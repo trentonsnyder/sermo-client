@@ -1,19 +1,25 @@
 import React, { Component } from 'react'
-import { Switch, Route, withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
+import Cookies from 'universal-cookie'
+import { getUser } from './actions/currentUser'
+import Dashboard from './components/Dashboard'
 import LogIn from './components/LogIn'
+import './normalize.css'
+import './skeleton.css'
 
+let cookies = new Cookies()
 
 class App extends Component {
 
   componentDidMount() {
-    // let token = cookies.get('token')
-    // this.props.getUser(token)
+    let token = cookies.get('sermoToken')
+    token && this.props.dispatch(getUser(token))
   }
 
   trafficController = () => {
     if (this.props.currentUser.id) {
-      return <div>Dat BOI</div>
+      return <Dashboard />
     } else {
       return <LogIn />
     }

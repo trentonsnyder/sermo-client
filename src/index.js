@@ -11,6 +11,7 @@ import App from './App'
 
 export const history = createHistory()
 
+const initialState = {}
 const enhancers = []
 const middleware = [
   thunk,
@@ -32,6 +33,7 @@ const composedEnhancers = compose(
 
 const store = createStore(
   rootReducer,
+  initialState,
   composedEnhancers
 )
 

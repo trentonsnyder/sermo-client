@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { setUser } from '../actions/currentUser'
+import { auth } from '../actions/currentUser'
 
 class LogIn extends React.Component {
   state = { email: '', password: ''}
@@ -11,7 +11,7 @@ class LogIn extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.dispatch(setUser(this.state))
+    this.props.dispatch(auth(this.state))
   }
 
   render() {

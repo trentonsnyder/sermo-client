@@ -1,4 +1,4 @@
-const currentUser = (state= {}, action) => {
+export default (state= {}, action) => {
   switch(action.type) {
     case 'CURRENT_USER':
       return {...action.data}
@@ -6,5 +6,3 @@ const currentUser = (state= {}, action) => {
       return {...action.data}
   }
 }
-
-export default currentUser

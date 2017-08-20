@@ -15,7 +15,8 @@
     "react-router-redux": "next",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
-    "universal-cookie": "^2.0.8"
+    "universal-cookie": "^2.0.8",
+    "validator": "^8.0.0"
   },
   "scripts": {
     "start": "react-scripts start",

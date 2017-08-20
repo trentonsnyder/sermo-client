@@ -16,18 +16,18 @@ export const auth = payload => dispatch => {
   })
   .catch(error => {
     console.log(error)
-  });
+  })
 }
 
 export const getUser = token => dispatch => {
   let instance = axios.create({
     headers: {'Authorization': token}
-  });
+  })
   instance.get('/api/v1/user')
   .then(res => {
     dispatch({type: 'CURRENT_USER', data: res.data})
   })
   .catch(error => {
     console.log(error)
-  });
+  })
 }

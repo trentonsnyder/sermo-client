@@ -2,7 +2,7 @@ import Cookies from 'react-cookie'
 
 let cookie = new Cookies()
 
-const Request = (attributes) => {
+export const apiRequest = (attributes) => {
   let token = cookies.get('token');
   let instance = axios.create({
     baseURL: `/api/v1/`,
@@ -18,6 +18,4 @@ const Request = (attributes) => {
       params: {...attributes.params}
     })
   }
-};
-
-export default Factory
+}

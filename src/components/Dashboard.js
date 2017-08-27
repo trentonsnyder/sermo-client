@@ -17,7 +17,9 @@ class Dashboard extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return { currentUser: state.currentUser }
+  return { 
+    currentUser: state.currentUser
+   }
 }
 
 export default connect(mapStateToProps)(Dashboard)

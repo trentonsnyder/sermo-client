@@ -1,8 +1,8 @@
-export default (state= {}, action) => {
+export default (state= {user: {}, loading: true}, action) => {
   switch(action.type) {
     case 'CURRENT_USER':
-      return {...action.data}
+      return { user: { ...action.data }, loading: false }
     default:
-      return {...action.data}
+      return state
   }
 }

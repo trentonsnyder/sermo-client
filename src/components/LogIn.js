@@ -5,7 +5,11 @@ import Input from './forms/Input'
 import validateInput from '../validation/login'
 
 class LogIn extends React.Component {
-  state = { email: '', password: '', errors: {} }
+  state = { 
+    email: '', 
+    password: '', 
+    errors: {} 
+  }
 
   isValid = (validator) => {
     const { errors, isValid } = validator(this.state)
@@ -16,10 +20,8 @@ class LogIn extends React.Component {
   handleChange = (e) => this.setState({ [e.target.name]: e.target.value, errors: {...this.state.errors, [e.target.name]: ''} })
 
   handleSubmit = (e) => {
-    e.preventDefault();
-    if (this.isValid(validateInput)) {
-      this.props.dispatch(auth(this.state))
-    }
+    e.preventDefault()
+    this.isValid(validateInput) && this.props.dispatch(auth(this.state))
   }
 
   render() {
@@ -50,4 +52,4 @@ class LogIn extends React.Component {
   }
 }
 
-export default connect()(LogIn);
+export default connect()(LogIn)

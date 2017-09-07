@@ -3,7 +3,7 @@ import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import Cookies from 'universal-cookie'
 import { getUser } from './actions/currentUser'
-import Authenticated from './components/hoc/Authenticated'
+import Authenticated from './components/Authenticated'
 import LogIn from './components/LogIn'
 import './normalize.css'
 import './skeleton.css'
@@ -13,6 +13,7 @@ let cookies = new Cookies()
 class App extends Component {
 
   componentDidMount() {
+    // thinking about adding the user id to the token name, in case a user has multiple accounts
     let token = cookies.get('sermoToken')
     if (token)
       this.props.dispatch(getUser(token))

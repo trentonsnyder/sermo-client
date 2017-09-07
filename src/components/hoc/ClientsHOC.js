@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import ClientTable from './ClientTable'
-import { getClients } from '../actions/clients'
+import { getClients } from '../../actions/clients'
 
 class Clients extends Component {
 
@@ -10,7 +9,15 @@ class Clients extends Component {
   }
 
   render() {
-    return this.props.loading ? <div className="loader">Loading...</div> : <ClientTable clients={this.props.clients} />
+    if (this.props.loading) {
+      return <div className="loader">Loading...</div>
+    } else {
+      if (this.props.clients.length > 0) {
+        return <div>{ this.props.children }</div>
+      } else {
+        return <div></div>
+      }
+    }
   }
 }
 
@@ -20,5 +27,5 @@ const mapStateToProps = (state) => {
     loading: state.clients.loading
   }
 }
-
+  
 export default connect(mapStateToProps, {getClients})(Clients)

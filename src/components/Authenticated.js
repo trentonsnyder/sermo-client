@@ -3,7 +3,7 @@ import { Switch, Route } from 'react-router-dom'
 import Dashboard from './Dashboard'
 import NavBar from './NavBar'
 import ClientsHOC from './hoc/ClientsHOC'
-import ClientTable from './ClientTable'
+import ClientsContainer from './ClientsContainer'
 import ClientDetails from './ClientDetails'
 
 const Authenticated = () => {
@@ -16,7 +16,7 @@ const Authenticated = () => {
         <Switch>
           <Route exact path='/' component={Dashboard}/>
           <ClientsHOC>
-            <Route exact path='/clients' component={ClientTable} />
+            <Route exact path='/clients' component={ClientsContainer} />
             <Route exact path='/clients/:id' component={ClientDetails}/>
           </ClientsHOC>
         </Switch>

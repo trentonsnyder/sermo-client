@@ -1,6 +1,6 @@
 import React from 'react'
-import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { formatPhoneNumber } from '../utils/functions'
 
 const ClientTable = ({clients}) => {
 
@@ -10,13 +10,13 @@ const ClientTable = ({clients}) => {
         return (
           <tr key={c.id}>
             <td><Link to={`/clients/${c.id}`}>{c.name}</Link></td>
-            <td>{c.phone_number}</td>
+            <td>{formatPhoneNumber(c.phone_number)}</td>
             <td>{c.last_seen}</td>
           </tr>
         )
       })
     } else {
-      return(
+      return (
         <tr>
           <td>no clients :(</td>
         </tr>
@@ -40,10 +40,4 @@ const ClientTable = ({clients}) => {
   )
 }
 
-const mapStateToProps = (state) => {
-  return {
-    clients: state.clients.clients
-  }
-}
-
-export default connect(mapStateToProps)(ClientTable)
+export default ClientTable

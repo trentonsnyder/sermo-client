@@ -1,5 +1,6 @@
 import axios from 'axios'
 import Cookies from 'universal-cookie'
+import { push } from 'react-router-redux'
 
 let cookies = new Cookies()
 
@@ -30,4 +31,10 @@ export const getUser = token => dispatch => {
   .catch(error => {
     console.log(error)
   })
+}
+
+export const logout = token => dispatch => {
+  cookies.remove('sermoToken', { path: '/' })
+  dispatch(push('/'))
+  dispatch({type: 'CURRENT_USER', data: {} })
 }

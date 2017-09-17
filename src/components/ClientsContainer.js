@@ -13,16 +13,22 @@ class ClientsContainer extends Component {
   }
 
   render() {
+    let { creating, clients } = this.props
     return (
       <div>
-        <button onClick={this.toggleForm}>{this.state.formOpen ? 'Close' : 'Add'}</button>
+        { creating ? <button>Creating...</button> : <button onClick={this.toggleForm}>{this.state.formOpen ? 'Close' : 'Add'}</button> }
         { this.state.formOpen && <ClientForm /> }
-        <ClientTable clients={this.props.clients}/>
+        <ClientTable clients={clients}/>
       </div>
     )
   }
 }
 
-const mapStateToProps = (state) => ({clients: state.clients.clients })
+const mapStateToProps = (state) => {
+  return {
+    clients: state.clients.clients,
+    creating: state.clients.creating
+  }
+}
 
 export default connect(mapStateToProps)(ClientsContainer)

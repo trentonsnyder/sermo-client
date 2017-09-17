@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import Input from './forms/Input'
 import validateInput from '../validation/client'
+import { createClient } from '../actions/clients'
 
 class ClientForm extends Component {
   state = {
@@ -20,8 +22,11 @@ class ClientForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    this.isValid(validateInput)
-    console.log('submitted')
+    if (this.isValid(validateInput)) {
+      let { first_name, last_name, phone_number } = this.state
+      this.props.createClient({first_name, last_name, phone_number})
+      this.setState({first_name: '', last_name: '', phone_number: ''})
+    }
   }
 
   render() {
@@ -60,4 +65,4 @@ class ClientForm extends Component {
   }
 }
 
-export default ClientForm
+export default connect(null, {createClient})(ClientForm)

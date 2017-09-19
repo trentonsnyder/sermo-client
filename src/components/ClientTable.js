@@ -1,13 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { formatPhoneNumber } from '../utils/functions'
+import { formatPhoneNumber, looseMatch } from '../utils/functions'
 
 import ReactTable from "react-table";
 import "react-table/react-table.css";
 
 const ClientTable = ({clients}) => {
-
-  const looseMatch = (filter, row) => row[filter.id].toString().toLowerCase().includes((filter.value).toString().toLowerCase());
 
   let columns = [
     {
@@ -26,7 +24,7 @@ const ClientTable = ({clients}) => {
     <ReactTable
       data={clients}
       columns={columns}
-      defaultPageSize={10}
+      defaultPageSize={clients.length > 50 ? 50 : clients.length}
       filterable={true}
       defaultFilterMethod={looseMatch}
     />

@@ -1,22 +1,22 @@
 const defaultState = {
-  clients: [],
+  tasks: [], 
   loading: true,
   creating: false
 }
 
 export default (state = defaultState, action) => {
   switch(action.type) {
-    case 'GET_CLIENTS':
-    return { clients: action.data, loading: false }
-    case 'GET_CLIENTS_LOADING':
+    case 'GET_TASKS':
+    return { tasks: action.data, loading: false }
+    case 'GET_TASKS_LOADING':
     return { ...state, loading: true }
-    case 'GET_CLIENTS_NOT_LOADING':
+    case 'GET_TASKS_NOT_LOADING':
     return { ...state, loading: false }
-    case 'CREATE_CLIENT':
-      return { clients: [...state.clients, action.data], creating: false }
-    case 'CREATE_CLIENT_LOADING':
+    case 'CREATE_TASK':
+      return { tasks: [...state.tasks, action.data], creating: false }
+    case 'CREATE_TASK_LOADING':
       return { ...state, creating: true }
-    case 'CREATE_CLIENT_NOT_LOADING':
+    case 'CREATE_TASK_NOT_LOADING':
       return { ...state, creating: false }
     default:
       return state

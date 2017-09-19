@@ -12,11 +12,7 @@ class Clients extends Component {
     if (this.props.loading) {
       return <div className="loader">Loading...</div>
     } else {
-      if (this.props.clients.length > 0) {
-        return <div>{ this.props.children }</div>
-      } else {
-        return <div></div>
-      }
+      return <div>{ this.props.children }</div>
     }
   }
 }

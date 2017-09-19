@@ -30,6 +30,7 @@ export const getUser = token => dispatch => {
   })
   .catch(error => {
     console.log(error)
+    dispatch({type: 'CURRENT_USER'})
   })
 }
 

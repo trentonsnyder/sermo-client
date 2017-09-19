@@ -4,9 +4,9 @@ import Dashboard from './Dashboard'
 import NavBar from './NavBar'
 import ClientsHOC from './hoc/ClientsHOC'
 import TasksHOC from './hoc/TasksHOC'
-import ClientsContainer from './ClientsContainer'
-import ClientDetails from './ClientDetails'
-import TasksContainer from './TasksContainer'
+import ClientsContainer from './clients/ClientsContainer'
+import ClientDetails from './clients/ClientDetails'
+import TasksContainer from './tasks/TasksContainer'
 
 const Authenticated = () => {
   return (
@@ -20,9 +20,9 @@ const Authenticated = () => {
           <ClientsHOC>
             <Route exact path='/clients' component={ClientsContainer} />
             <Route exact path='/clients/:id' component={ClientDetails}/>
-            {/* <TasksHOC>
+            <TasksHOC>
               <Route exact path='/tasks' component={TasksContainer} />
-            </TasksHOC> */}
+            </TasksHOC>
           </ClientsHOC>
         </Switch>
       </div>

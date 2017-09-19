@@ -16,5 +16,11 @@ class TasksHOC extends Component {
     }
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    loading: state.tasks.loading
+  }
+}
   
-export default connect(null, {getTasks})(TasksHOC)
+export default connect(mapStateToProps, {getTasks})(TasksHOC)

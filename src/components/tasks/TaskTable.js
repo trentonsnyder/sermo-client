@@ -1,7 +1,8 @@
 import React from 'react'
-import { looseMatch } from '../utils/functions'
-import ReactTable from "react-table";
-import "react-table/react-table.css";
+import { looseMatch } from '../../utils/functions'
+import ReactTable from "react-table"
+import "react-table/react-table.css"
+import TaskDetailsContainer from './TaskDetailsContainer'
 
 const TaskTable = ({tasks}) => {
 
@@ -23,6 +24,7 @@ const TaskTable = ({tasks}) => {
       defaultPageSize={tasks.length > 50 ? 50 : tasks.length}
       filterable={true}
       defaultFilterMethod={looseMatch}
+      SubComponent={row => <TaskDetailsContainer task={row.original} /> }
     />
   )
 }

@@ -19,7 +19,6 @@ class Clients extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    clients: state.clients.clients,
     loading: state.clients.loading
   }
 }

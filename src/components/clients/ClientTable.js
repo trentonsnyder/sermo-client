@@ -1,9 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { formatPhoneNumber, looseMatch } from '../utils/functions'
+import { formatPhoneNumber, looseMatch } from '../../utils/functions'
 
-import ReactTable from "react-table";
-import "react-table/react-table.css";
+import ReactTable from "react-table"
+import "react-table/react-table.css"
 
 const ClientTable = ({clients}) => {
 

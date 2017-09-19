@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import Input from './forms/Input'
-import validateInput from '../validation/client'
-import { createClient } from '../actions/clients'
+import Input from '../forms/Input'
+import validateInput from '../../validation/client'
+import { createClient } from '../../actions/clients'
 
 class ClientForm extends Component {
   state = {

@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { SingleDatePicker } from 'react-dates'
+import 'react-dates/lib/css/_datepicker.css'
 import moment from 'moment';
 import Input from '../forms/Input'
 import TextArea from '../forms/TextArea'
 import validateInput from '../../validation/task'
 import { createTask } from '../../actions/tasks'
-import 'react-dates/lib/css/_datepicker.css'
 
 class TaskForm extends Component {
   state = {
@@ -43,7 +43,7 @@ class TaskForm extends Component {
   }
 
   render() {
-    let { errors, name, body, due_date, focused } = this.state
+    let { errors, name, body, focused } = this.state
     return (
       <form onSubmit={this.handleSubmit}>
         <Input
@@ -61,18 +61,29 @@ class TaskForm extends Component {
           onChange={this.handleChange}
           error={errors.body}
         />
-        <SingleDatePicker
-          id="due_date"
-          numberOfMonths={1}
-          date={due_date}
-          focused={focused.focused}
-          onFocusChange={focused => this.setState({ focused })}
-          onDateChange={due_date => this.setState({ due_date })}
-        />
-        <label>Client</label>
-        <select name='client_id' onChange={this.handleChange}>
-          {this.renderOptions()}
-        </select>
+        <div>
+          <label>Due Date</label>
+          <SingleDatePicker
+            id="due_date"
+            numberOfMonths={1}
+            date={null}
+            focused={focused.focused}
+            onFocusChange={focused => this.setState({ focused })}
+            onDateChange={due_date => this.setState({ due_date })}
+          />
+          <div style={{position: 'relative'}}>
+            { errors.due_date && <span style={{color: 'red', position: 'absolute', bottom: '-5px'}}>{errors.due_date}</span> }
+          </div>
+        </div>
+        <div>
+          <label>Client</label>
+          <select name='client_id' onChange={this.handleChange}>
+            {this.renderOptions()}
+          </select>
+          <div style={{position: 'relative'}}>
+            { errors.client_id && <span style={{color: 'red', position: 'absolute', bottom: '-5px'}}>{errors.client_id}</span> }
+          </div>
+        </div>
         <div>
           <input className='button-primary' type="submit" />
         </div>

@@ -9,10 +9,6 @@ export default (data) => {
     errors.name = 'Name required'
   }
 
-  if (validator.isEmpty(data.client_id)) {
-    errors.client_id = 'Client required'
-  }
-
   return {
     errors,
     isValid: isEmpty(errors)

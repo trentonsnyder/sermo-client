@@ -13,12 +13,12 @@ class TasksContainer extends Component {
   }
   
   render() {
-    let { state: {formOpen}, props: {creating, tasks, clients} } = this
+    let { state: {formOpen}, props: {creating, tasks} } = this
     return (
       <div>
         { creating ? <button>Creating...</button> : <button onClick={this.toggleForm}>{formOpen ? 'Cancel' : 'Add'}</button> }
         { formOpen && <TaskForm tasks={tasks} toggleForm={this.toggleForm} /> }
-        <TaskTable tasks={tasks} clients={clients} />
+        <TaskTable />
       </div>
     )
   }
@@ -27,8 +27,7 @@ class TasksContainer extends Component {
 const mapStateToProps = state => {
   return{
     tasks: state.tasks.tasks,
-    creating: state.tasks.creating,
-    clients: state.clients.clients
+    creating: state.tasks.creating
   }
 }
 

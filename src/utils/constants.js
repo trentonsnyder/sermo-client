@@ -1,0 +1,1 @@
+export const taskStatusOptions = ['open', 'pending', 'completed', 'revision']

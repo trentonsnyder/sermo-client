@@ -31,3 +31,17 @@ export const createTask = payload => dispatch => {
     dispatch({type: 'CREATE_TASK_NOT_LOADING'})
   })
 }
+
+export const updateTask = payload => dispatch => {
+  console.log('action', payload)
+  dispatch({type: 'UPDATE_TASK_LOADING'})
+  axios.put(`/api/v1/tasks/${payload.id}`)
+  .then(res => {
+    dispatch({type: 'UPDATE_TASK', data: res.data.task})
+    dispatch({type: 'UPDATE_TASK_NOT_LOADING'})
+  })
+  .catch(error => {
+    console.log(error)
+    dispatch({type: 'UPDATE_TASK_NOT_LOADING'})
+  })
+}

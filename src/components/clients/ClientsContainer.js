@@ -16,7 +16,7 @@ class ClientsContainer extends Component {
     let { creating, clients } = this.props
     return (
       <div>
-        { creating ? <button>Creating...</button> : <button onClick={this.toggleForm}>{this.state.formOpen ? 'Close' : 'Add'}</button> }
+        { creating ? <button>Creating...</button> : <button onClick={this.toggleForm}>{this.state.formOpen ? 'Cancel' : 'Add'}</button> }
         { this.state.formOpen && <ClientForm /> }
         <ClientTable clients={clients}/>
       </div>

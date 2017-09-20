@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import TaskTable from './TaskTable'
+import TaskForm from './TaskForm'
 
 class TasksContainer extends Component {
   state = { formOpen: false }
@@ -12,11 +13,11 @@ class TasksContainer extends Component {
   }
   
   render() {
-    let { creating, tasks, clients } = this.props
+    let { state: {formOpen}, props: {creating, tasks, clients} } = this
     return (
       <div>
-        { creating ? <button>Creating...</button> : <button onClick={this.toggleForm}>{this.state.formOpen ? 'Close' : 'Add'}</button> }
-        {/* { this.state.formOpen && <TaskForm clients={clients}/> } */}
+        { creating ? <button>Creating...</button> : <button onClick={this.toggleForm}>{formOpen ? 'Cancel' : 'Add'}</button> }
+        { formOpen && <TaskForm tasks={tasks} toggleForm={this.toggleForm} /> }
         <TaskTable tasks={tasks} clients={clients} />
       </div>
     )

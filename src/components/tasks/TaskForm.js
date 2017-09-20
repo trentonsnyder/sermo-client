@@ -1,21 +1,22 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { updateTask } from '../../actions/tasks'
+import { SingleDatePicker } from 'react-dates'
+import moment from 'moment';
 import Input from '../forms/Input'
 import TextArea from '../forms/TextArea'
 import validateInput from '../../validation/task'
+import { createTask } from '../../actions/tasks'
+import 'react-dates/lib/css/_datepicker.css'
 
-class TaskEdit extends Component {
+class TaskForm extends Component {
   state = {
-    id: '',
     name: '',
-    due_date: '',
+    due_date: moment(),
     body: '',
+    client_id: '',
     errors: {},
-  }
-
-  componentDidMount() {
-    this.setState({...this.props.task})
+    saving: false,
+    focused: false
   }
 
   isValid = (validator) => {
@@ -29,9 +30,9 @@ class TaskEdit extends Component {
   handleSubmit = (e) => {
     e.preventDefault()
     if (this.isValid(validateInput)) {
-      let { name, due_date, body, id } = this.state
-      this.props.updateTask({name, body, due_date, id, client: { id: this.props.task.client.id}})
-      this.props.toggleEdit()
+      let { name, due_date, body, client_id } = this.state
+      this.props.createTask({name, body, due_date, client_id})
+      this.setState({name: '', body: '', due_date: '', client_id: ''})
     }
   }
 
@@ -42,39 +43,48 @@ class TaskEdit extends Component {
   }
 
   render() {
-    let { errors, name, body, due_date } = this.state
+    let { errors, name, body, due_date, focused } = this.state
     return (
       <form onSubmit={this.handleSubmit}>
         <Input
-          label={'Name'}
-          type={'text'}
-          name={'name'}
+          label='Name'
+          type='text'
+          name='name'
           value={name}
           onChange={this.handleChange}
           error={errors.name}
         />
         <TextArea
-          label={'Body'}
-          name={'body'}
+          label='Body'
+          name='body'
           value={body}
           onChange={this.handleChange}
           error={errors.body}
         />
-        <Input
-          label={'Due Date'}
-          type={'text'}
-          name={'due_date'}
-          value={due_date}
-          onChange={this.handleChange}
-          error={errors.due_date}
+        <SingleDatePicker
+          id="due_date"
+          numberOfMonths={1}
+          date={due_date}
+          focused={focused.focused}
+          onFocusChange={focused => this.setState({ focused })}
+          onDateChange={due_date => this.setState({ due_date })}
         />
+        <label>Client</label>
+        <select name='client_id' onChange={this.handleChange}>
+          {this.renderOptions()}
+        </select>
         <div>
           <input className='button-primary' type="submit" />
-          <input type='button' onClick={this.props.toggleEdit} value='Cancel' />
         </div>
       </form>
     )
   }
 }
 
-export default connect(null, {updateTask})(TaskEdit)
+const mapStateToProps = (state) => {
+  return {
+    clients: state.clients.clients
+  }
+}
+
+export default connect(mapStateToProps, {createTask})(TaskForm)

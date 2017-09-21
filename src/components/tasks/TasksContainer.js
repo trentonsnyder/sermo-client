@@ -16,17 +16,18 @@ class TasksContainer extends Component {
     let { state: {formOpen}, props: {creating, tasks} } = this
     return (
       <div>
+        <h3>Tasks</h3>
         { creating ? <button>Creating...</button> : <button onClick={this.toggleForm}>{formOpen ? 'Cancel' : 'Add'}</button> }
         { formOpen && <TaskForm tasks={tasks} toggleForm={this.toggleForm} /> }
-        <TaskTable />
+        <TaskTable tasks={tasks} />
       </div>
     )
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, props) => {
   return{
-    tasks: state.tasks.tasks,
+    tasks: props.filterId ? state.tasks.tasks.filter(t => t.client.id === props.filterId) : state.tasks.tasks,
     creating: state.tasks.creating
   }
 }

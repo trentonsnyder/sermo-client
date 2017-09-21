@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { formatPhoneNumber, looseMatch } from '../../utils/functions'
-
 import ReactTable from "react-table"
 import "react-table/react-table.css"
 
@@ -17,6 +16,10 @@ const ClientTable = ({clients}) => {
       Header: 'Phone Number',
       accessor: 'phone_number',
       Cell: ({value}) => (formatPhoneNumber(value))
+    },
+    {
+      Header: 'Last Seen',
+      accessor: 'last_seen'
     }
   ]
 
@@ -27,6 +30,10 @@ const ClientTable = ({clients}) => {
       defaultPageSize={clients.length > 50 ? 50 : clients.length}
       filterable={true}
       defaultFilterMethod={looseMatch}
+      defaultSorted={[{
+        id: 'last_seen',
+        desc: false
+      }]}
     />
   )
 }

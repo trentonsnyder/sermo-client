@@ -18,9 +18,9 @@ const Authenticated = () => {
         <Switch>
           <Route exact path='/' component={Dashboard}/>
           <ClientsHOC>
-            <Route exact path='/clients' component={ClientsContainer} />
-            <Route exact path='/clients/:id' component={ClientDetails}/>
             <TasksHOC>
+              <Route exact path='/clients' component={ClientsContainer} />
+              <Route exact path='/clients/:id' component={ClientDetails}/>
               <Route exact path='/tasks' component={TasksContainer} />
             </TasksHOC>
           </ClientsHOC>

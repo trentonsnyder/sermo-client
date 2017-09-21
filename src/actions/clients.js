@@ -31,3 +31,16 @@ export const createClient = payload => dispatch => {
     dispatch({type: 'CREATE_CLIENT_NOT_LOADING'})
   })
 }
+
+export const updateClient = payload => dispatch => {
+  dispatch({type: 'UPDATE_CLIENT_ID', id: payload.id})
+  axios.put(`/api/v1/clients/${payload.id}`, {client: payload})
+  .then(res => {
+    dispatch({type: 'UPDATE_CLIENT', data: res.data.client})
+    dispatch({type: 'REMOVE_UPDATE_CLIENT_ID', id: res.data.id})
+  })
+  .catch(error => {
+    console.log(error)
+    dispatch({type: 'REMOVE_UPDATE_CLIENT_ID', id: payload.id})
+  })
+}

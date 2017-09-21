@@ -12,7 +12,7 @@ class TaskDetailsContainer extends Component {
   render() {
     let { state: {edit}, props: {task} } = this
     return (
-      <div style={{padding: '20px'}}>
+      <div>
         { edit ? <TaskEdit task={task} toggleEdit={this.toggleEdit} /> : <TaskDetails task={task} deleteTask={() => this.props.deleteTask(task)} toggleEdit={this.toggleEdit} />}
       </div>
     )

@@ -1,10 +1,9 @@
 import React from 'react'
-import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { looseMatch } from '../../utils/functions'
 import ReactTable from "react-table"
-import moment from 'moment'
 import "react-table/react-table.css"
+import moment from 'moment'
+import { looseMatch } from '../../utils/functions'
 import TaskDetailsContainer from './TaskDetailsContainer'
 
 const TaskTable = ({tasks}) => {
@@ -34,7 +33,7 @@ const TaskTable = ({tasks}) => {
     <ReactTable
       data={tasks}
       columns={columns}
-      defaultPageSize={tasks.length > 50 ? 50 : tasks.length}
+      defaultPageSize={tasks.length > 50 ? 50 : tasks.length < 5 ? 5 : tasks.length }
       filterable={true}
       defaultFilterMethod={looseMatch}
       SubComponent={row => <TaskDetailsContainer task={row.original} /> }
@@ -46,13 +45,7 @@ const TaskTable = ({tasks}) => {
   )
 }
 
-const mapStateToProps = (state) => {
-  return {
-    tasks: state.tasks.tasks
-  }
-}
 
-
-export default connect(mapStateToProps)(TaskTable)
+export default TaskTable
 
 

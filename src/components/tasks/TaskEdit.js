@@ -41,11 +41,7 @@ class TaskEdit extends Component {
     }
   }
 
-  renderOptions = () => {
-    return this.props.clients.map( c => {
-      return <option key={c.id} value={c.id}>{c.name}</option>
-    })
-  }
+  renderOptions = () => this.props.clients.map( c => <option key={c.id} value={c.id}>{c.name}</option>)
 
   render() {
     let { errors, name, body, due_date, focused } = this.state

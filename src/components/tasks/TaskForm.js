@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { SingleDatePicker } from 'react-dates'
 import 'react-dates/lib/css/_datepicker.css'
-import moment from 'moment';
 import Input from '../forms/Input'
 import TextArea from '../forms/TextArea'
 import validateInput from '../../validation/task'
@@ -11,11 +10,10 @@ import { createTask } from '../../actions/tasks'
 class TaskForm extends Component {
   state = {
     name: '',
-    due_date: moment(),
+    due_date: null,
     body: '',
-    client_id: '',
+    client_id: this.props.clients[0].id.toString(),
     errors: {},
-    saving: false,
     focused: false
   }
 
@@ -32,18 +30,14 @@ class TaskForm extends Component {
     if (this.isValid(validateInput)) {
       let { name, due_date, body, client_id } = this.state
       this.props.createTask({name, body, due_date, client_id})
-      this.setState({name: '', body: '', due_date: '', client_id: ''})
+      this.setState({name: '', body: '', due_date: ''})
     }
   }
 
-  renderOptions = () => {
-    return this.props.clients.map( c => {
-      return <option key={c.id} value={c.id}>{c.name}</option>
-    })
-  }
+  renderOptions = () => this.props.clients.map(c => <option key={c.id} value={c.id}>{c.name}</option>)
 
   render() {
-    let { errors, name, body, focused } = this.state
+    let { errors, name, body, due_date, focused } = this.state
     return (
       <form onSubmit={this.handleSubmit}>
         <Input
@@ -66,7 +60,7 @@ class TaskForm extends Component {
           <SingleDatePicker
             id="due_date"
             numberOfMonths={1}
-            date={null}
+            date={due_date ? due_date : null}
             focused={focused.focused}
             onFocusChange={focused => this.setState({ focused })}
             onDateChange={due_date => this.setState({ due_date })}
@@ -78,14 +72,14 @@ class TaskForm extends Component {
         <div>
           <label>Client</label>
           <select name='client_id' onChange={this.handleChange}>
-            {this.renderOptions()}
+            { this.renderOptions() }
           </select>
           <div style={{position: 'relative'}}>
             { errors.client_id && <span style={{color: 'red', position: 'absolute', bottom: '-5px'}}>{errors.client_id}</span> }
           </div>
         </div>
         <div>
-          <input className='button-primary' type="submit" />
+          { this.props.creating ? <button className="primary-button">Loading</button> : <input className='button-primary' type="submit" /> }
         </div>
       </form>
     )
@@ -94,7 +88,8 @@ class TaskForm extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    clients: state.clients.clients
+    clients: state.clients.clients,
+    creating: state.tasks.creating
   }
 }
 

@@ -33,15 +33,27 @@ export const createTask = payload => dispatch => {
 }
 
 export const updateTask = payload => dispatch => {
-  console.log('action', payload)
-  dispatch({type: 'UPDATE_TASK_LOADING'})
+  dispatch({type: 'UPDATE_TASK_ID', id: payload.id})
   axios.put(`/api/v1/tasks/${payload.id}`, {task: payload})
   .then(res => {
     dispatch({type: 'UPDATE_TASK', data: res.data.task})
-    dispatch({type: 'UPDATE_TASK_NOT_LOADING'})
+    dispatch({type: 'REMOVE_UPDATE_TASK_ID', id: res.data.task.id})
   })
   .catch(error => {
     console.log(error)
-    dispatch({type: 'UPDATE_TASK_NOT_LOADING'})
+    dispatch({type: 'REMOVE_UPDATE_TASK_ID', id: payload.id})
+  })
+}
+
+export const deleteTask = payload => dispatch => {
+  dispatch({type: 'DELETE_TASK_ID', id: payload.id})
+  axios.delete(`/api/v1/tasks/${payload.id}`, {task: payload})
+  .then(res => {
+    dispatch({type: 'DELETE_TASK', data: res.data.task})
+    dispatch({type: 'REMOVE_DELETE_TASK_ID', id: payload.id})
+  })
+  .catch(error => {
+    console.log('error', error)
+    dispatch({type: 'REMOVE_DELETE_TASK_ID', id: payload.id})
   })
 }

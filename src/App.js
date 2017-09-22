@@ -7,6 +7,7 @@ import Authenticated from './components/Authenticated'
 import LogIn from './components/LogIn'
 import './normalize.css'
 import './skeleton.css'
+import './flexboxgrid.css'
 
 let cookies = new Cookies()
 
@@ -35,7 +36,7 @@ class App extends Component {
 
   render() {
     return (
-      <div className='container'>
+      <div>
         { this.trafficController() }
       </div>
     )

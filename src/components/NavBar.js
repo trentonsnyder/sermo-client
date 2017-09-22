@@ -8,6 +8,7 @@ const NavBar = ({selected, logout}) => {
   return (
     <div className='navbar'>
       <Link to='/'>Dashboard</Link>
+      <Link to='/chat'>Chat</Link>
       <Link to='/clients'>Clients</Link>
       <Link to='/tasks'>Tasks</Link>
       <a onClick={logout}>Logout</a>

@@ -16,9 +16,13 @@ class ClientsContainer extends Component {
     let { creating, clients } = this.props
     return (
       <div>
-        <h3>Clients</h3>
-        { creating ? <button>Creating...</button> : <button onClick={this.toggleForm}>{this.state.formOpen ? 'Cancel' : 'Add'}</button> }
-        { this.state.formOpen && <ClientForm /> }
+        <div className='flex-container'>
+          <h3>Clients</h3>
+          { creating ? <button>Creating...</button> : <button onClick={this.toggleForm}>{this.state.formOpen ? 'Cancel' : 'Add'}</button> }
+        </div>
+        <div>
+          { this.state.formOpen && <ClientForm /> }
+        </div>
         <ClientTable clients={clients}/>
       </div>
     )

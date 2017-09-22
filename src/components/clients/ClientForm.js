@@ -32,35 +32,39 @@ class ClientForm extends Component {
   render() {
     let { errors, first_name, last_name, phone_number } = this.state
     return (
-      <form onSubmit={this.handleSubmit}>
-        <Input
-          label={'First Name'}
-          type={'text'}
-          name={'first_name'}
-          value={first_name}
-          onChange={this.handleChange}
-          error={errors.first_name}
-        />
-        <Input
-          label={'Last Name'}
-          type={'text'}
-          name={'last_name'}
-          value={last_name}
-          onChange={this.handleChange}
-          error={errors.last_name}
-        />
-        <Input
-          label={'Phone Number'}
-          type={'text'}
-          name={'phone_number'}
-          value={phone_number}
-          onChange={this.handleChange}
-          error={errors.phone_number}
-        />
-        <div>
-          <input className='button-primary' type="submit" />
-        </div>
-      </form>
+      <div className='flex-container'>
+        <form onSubmit={this.handleSubmit} style={{width: '100%', alignSelf: 'center'}}>
+          <div className="flex-form">
+            <Input
+              label={'First Name'}
+              type={'text'}
+              name={'first_name'}
+              value={first_name}
+              onChange={this.handleChange}
+              error={errors.first_name}
+            />
+            <Input
+              label={'Last Name'}
+              type={'text'}
+              name={'last_name'}
+              value={last_name}
+              onChange={this.handleChange}
+              error={errors.last_name}
+            />
+          </div>
+          <div className="flex-form">
+            <Input
+              label={'Phone Number'}
+              type={'text'}
+              name={'phone_number'}
+              value={phone_number}
+              onChange={this.handleChange}
+              error={errors.phone_number}
+            />
+            <input className='button-primary' type="submit" />
+          </div>
+        </form>
+      </div>
     )
   }
 }

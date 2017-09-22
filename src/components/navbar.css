@@ -1,7 +1,9 @@
 .navbar {
   display: flex;
   justify-content: space-around;
-  background-color: black; }
+  background-color: black;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px; }
 
 .navbar a {
   color: white;

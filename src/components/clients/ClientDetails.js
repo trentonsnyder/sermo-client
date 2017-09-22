@@ -20,7 +20,6 @@ class ClientDetails extends React.Component {
           <p>{this.props.client.name}</p>
           <p>{this.props.client.phone_number}</p>
           <p>{this.props.client.last_seen}</p>
-          <button onClick={this.toggleEdit}>Edit</button>
         </div>
       )
     }
@@ -28,8 +27,11 @@ class ClientDetails extends React.Component {
 
   render() {
     return (
-      <div>
-        <button onClick={() => this.props.dispatch(goBack())}>Back</button>
+      <div style={{marginTop: '12px'}}>
+        <div className='flex-container'>
+          <button onClick={() => this.props.dispatch(goBack())}>Back</button>
+          <button onClick={this.toggleEdit}>{this.state.edit ? 'Cancel' : 'Edit'}</button>
+        </div>
         { this.renderEdit() }
         <TasksContainer filterId={this.props.client.id} />
       </div>

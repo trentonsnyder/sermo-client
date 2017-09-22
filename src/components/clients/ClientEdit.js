@@ -64,7 +64,6 @@ class ClientEdit extends Component {
         />
         <div style={{marginTop: '15px'}}>
           <input className='button-primary' type="submit" />
-          <input type='button' onClick={this.props.toggleEdit} value='Cancel' />
         </div>
       </form>
     )

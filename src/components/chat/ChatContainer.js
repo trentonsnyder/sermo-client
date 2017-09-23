@@ -16,13 +16,11 @@ const ChatContainer = ({clients}) => {
   }
 
   return (
-    <div className='row'>
-      <div className='col-md-2 chat-room-sidebar'>
+    <div style={{display: 'flex'}}>
+      <div className='chat-room-sidebar'>
         { sideNav() }
       </div>
-      <div className='col-md-10'>
-        <Route path='/chat/:id' component={Chat} />
-      </div>
+      <Route path='/chat/:id' component={Chat} />
     </div>
   )
 }

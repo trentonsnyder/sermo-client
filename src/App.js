@@ -7,7 +7,6 @@ import Authenticated from './components/Authenticated'
 import LogIn from './components/LogIn'
 import './normalize.css'
 import './skeleton.css'
-import './flexboxgrid.css'
 
 let cookies = new Cookies()
 

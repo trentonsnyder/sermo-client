@@ -5,11 +5,11 @@ import Messenger from './Messenger'
 
 const Chat = ({client}) => {
   return (
-    <div className='row'>
-      <div className='col-md-8'>
+    <div style={{display: 'flex'}}>
+      <div>
         <Messenger />
       </div>
-      <div className='col-md-4'>
+      <div>
         <div>
           <p>{client.name}</p>
           <p>{formatPhoneNumber(client.phone_number)}</p>

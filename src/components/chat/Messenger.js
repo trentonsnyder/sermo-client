@@ -2,11 +2,12 @@ import React, { Component } from 'react'
 import { withRouter } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { getMessages } from '../../actions/chat'
+import ChatInputBox from './ChatInputBox'
 
 class Messenger extends Component {
 
   componentDidMount() {
-    this.props.dispatch(getMessages(this.props.client.room_id))
+    this.props.dispatch(getMessages(this.props.client.id))
   }
   
   componentDidUpdate() {
@@ -15,7 +16,7 @@ class Messenger extends Component {
   
   componentWillReceiveProps(nextProps) {
     if (this.props.client.id !== nextProps.client.id) {
-      this.props.dispatch(getMessages(nextProps.client.room_id))
+      this.props.dispatch(getMessages(nextProps.client.id))
     }
   }
   
@@ -28,8 +29,8 @@ class Messenger extends Component {
   renderMessages = () => {
     return this.props.messages.map(m => {
       return (
-        <div key={m.id} className='col-xs-12'>
-          <div className={`row ${m.user_id ? 'end-xs' : 'start-xs'}`} style={{marginBottom: '12px'}}>
+        <div key={m.id}>
+          <div className={`${m.user_id}`} style={{marginBottom: '12px', display: 'flex'}}>
             <div className={`chat-bubble ${m.user_id && 'client-message'}`}>
               {`${m.body}`}
             </div>
@@ -47,16 +48,10 @@ class Messenger extends Component {
     } else {
       return (
         <div style={{position: 'relative'}}>
-          <div id='chat-window' className='row chat-window'>
-            <div className='inner-chat-window'>
-              {this.renderMessages()}
-            </div>
+          <div id='chat-window' className='chat-window' style={{display: 'flex', flexDirection: 'column'}}>
+            {this.renderMessages()}
           </div>
-          <div className='input-box'>
-            <form>
-              <input type='text' />
-            </form>
-          </div>
+          <ChatInputBox client={this.props.client} />
         </div>
       )
     }

@@ -1,5 +1,6 @@
 import React from 'react'
-import { Switch, Route } from 'react-router-dom'
+import { connect } from 'react-redux'
+import { Switch, Route, withRouter } from 'react-router-dom'
 import Dashboard from './Dashboard'
 import NavBar from './NavBar'
 import ClientsHOC from './hoc/ClientsHOC'
@@ -19,14 +20,19 @@ let cable = ActionCable.createConsumer(`ws://localhost:3001/cable?token=${cookie
 class Authenticated extends React.Component {
   componentDidMount() {
     cable.subscriptions.create({
-      channel: 'OnlineChannel'
+      channel: 'MessagesChannel'
     },
     {
       received: (data) => {
-        console.log('received', data)
+        if (this.props.messages && data.client_id === this.props.messages[0].client_id) {
+          this.props.dispatch({type: 'CREATE_MESSAGE', data})
+        } else {
+          // some notification that will get logged to the sidebar
+        }
       }
     })
   }
+  
   render() {
     return (
       <div>
@@ -51,4 +57,10 @@ class Authenticated extends React.Component {
   }
 }
 
-export default Authenticated
+const mapStateToProps = (state) => {
+  return{
+    messages: state.messages.messages
+  }
+}
+
+export default withRouter(connect(mapStateToProps)(Authenticated))

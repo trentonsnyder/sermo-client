@@ -35,15 +35,10 @@
 }
 
 .chat-window {
-  height: calc(100vh - 45px);
+  height: calc(100vh - 50px);
+  padding-bottom: 55px;
   overflow-y: auto;
-}
-
-.inner-chat-window {
   width: 100%;
-  height: inherit;
-  max-height: 100%;
-  margin: 45px 0px 45px 0px;
 }
 
 .input-box {

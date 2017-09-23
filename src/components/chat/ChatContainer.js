@@ -1,44 +1,30 @@
-import React, { Component } from 'react' 
+import React from 'react' 
 import { connect } from 'react-redux'
 import { Route } from 'react-router-dom'
-import ClientSideItem from './ClientSideItem'
-import ClientChat from './ClientChat'
+import NavListItem from './NavListItem'
+import Chat from './Chat'
 import './chat.css'
 
-class ChatContainer extends Component {
+const ChatContainer = ({clients}) => {
 
-  state = {
-    name: 'joe'
-  }
-
-  componentDidMount() {
-    this.setState({...this.props.clients[0]})
-  }
-
-  selectRoom = (client) => {
-    this.setState({...client})
-  }
-
-  renderRooms = () => {
-    return this.props.clients.map(c => {
+  const sideNav = () => {
+    return clients.map(c => {
       return(
-        <ClientSideItem client={c} key={c.id} />
+        <NavListItem client={c} key={c.id} />
       )
     })
   }
 
-  render() {
-    return (
-      <div className='row'>
-        <div className='col-md-2 chat-room-sidebar'>
-          { this.renderRooms() }
-        </div>
-        <div className='col-md-10'>
-          <Route path='/chat/:id' component={ClientChat} />
-        </div>
+  return (
+    <div className='row'>
+      <div className='col-md-2 chat-room-sidebar'>
+        { sideNav() }
       </div>
-    )
-  }
+      <div className='col-md-10'>
+        <Route path='/chat/:id' component={Chat} />
+      </div>
+    </div>
+  )
 }
 
 const mapStateToProps = (state) => {

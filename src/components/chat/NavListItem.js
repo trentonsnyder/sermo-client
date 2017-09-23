@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const ClientSideItem = ({selectRoom, client}) => {
+const NavListItem = ({selectRoom, client}) => {
   return (
     <Link to={`/chat/${client.id}`}>
       <div className='chat-sidebar-item'>
@@ -11,4 +11,4 @@ const ClientSideItem = ({selectRoom, client}) => {
   )
 }
 
-export default ClientSideItem
+export default NavListItem

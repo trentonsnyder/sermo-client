@@ -1,6 +1,7 @@
 .chat-room-sidebar {
   height: calc(100vh - 45px);
   overflow-y: auto;
+  border-right: 1px solid gray;
 }
 
 .chat-sidebar-item {
@@ -20,4 +21,42 @@
 .chat-room-sidebar a {
   color: black;
   text-decoration: none;
+}
+
+.chat-bubble {
+  max-width: 500px;
+  border-radius: 5px;
+  padding: 5px;
+  background-color: #F0F8FF;
+}
+
+.client-message {
+  background-color: #1EAEDB;
+}
+
+.chat-window {
+  height: calc(100vh - 45px);
+  overflow-y: auto;
+}
+
+.inner-chat-window {
+  width: 100%;
+  height: inherit;
+  max-height: 100%;
+  margin: 45px 0px 45px 0px;
+}
+
+.input-box {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+.input-box form {
+  margin-bottom: 20px;
+}
+
+.input-box form input {
+  width: 98%;
+  margin-bottom: 0;
 }

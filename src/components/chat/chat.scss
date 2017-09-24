@@ -35,8 +35,8 @@
 }
 
 .chat-window {
-  height: calc(100vh - 50px);
-  padding-bottom: 55px;
+  max-height: 500px;
+  padding-bottom: 75px;
   overflow-y: auto;
   width: 100%;
 }
@@ -45,13 +45,4 @@
   position: absolute;
   bottom: 0;
   width: 100%;
-}
-
-.input-box form {
-  margin-bottom: 20px;
-}
-
-.input-box form input {
-  width: 98%;
-  margin-bottom: 0;
 }

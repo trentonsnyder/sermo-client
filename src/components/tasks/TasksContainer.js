@@ -16,8 +16,10 @@ class TasksContainer extends Component {
     let { state: {formOpen}, props: {creating, tasks} } = this
     return (
       <div>
-        <h3>Tasks</h3>
-        { creating ? <button>Creating...</button> : <button onClick={this.toggleForm}>{formOpen ? 'Cancel' : 'Add'}</button> }
+        <div className='flex-container'>
+          <h3>Tasks</h3>
+          { creating ? <button>Creating...</button> : <button onClick={this.toggleForm}>{formOpen ? 'Cancel' : 'Add'}</button> }
+        </div>
         { formOpen && <TaskForm tasks={tasks} toggleForm={this.toggleForm} /> }
         <TaskTable tasks={tasks} />
       </div>

@@ -32,26 +32,28 @@ class Authenticated extends React.Component {
       }
     })
   }
-  
+
   render() {
     return (
       <div>
         <div>
           <NavBar />
         </div>
-        <div>
-          <Switch>
-            <Route exact path='/' component={Dashboard}/>
-            <ClientsHOC>
-              <Route path='/chat' component={ChatContainer} />
-              <TasksHOC>
-                <Route exact path='/clients' component={ClientsContainer} />
-                <Route exact path='/clients/:id' component={ClientDetails}/>
-                <Route exact path='/tasks' component={TasksContainer} />
-              </TasksHOC>
-            </ClientsHOC>
-          </Switch>
-        </div>
+            <Switch>
+              <Route exact path='/' component={Dashboard}/>
+              <ClientsHOC>
+                <Route path='/chat' component={ChatContainer} />
+                <TasksHOC>
+                  <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+                    <div style={{width: '100%', maxWidth: '1200px', padding: '12px'}}>
+                      <Route exact path='/clients' component={ClientsContainer} />
+                      <Route exact path='/clients/:id' component={ClientDetails}/>
+                      <Route exact path='/tasks' component={TasksContainer} />
+                    </div>
+                  </div>
+                </TasksHOC>
+              </ClientsHOC>
+            </Switch>
       </div>
     )
   }

@@ -30,8 +30,8 @@ class ChatInputBox extends Component {
     return (
       <div className='input-box' style={{backgroundColor: 'white', paddingTop: '5px'}}>
         <form style={{width: '100%', display: 'flex'}} onSubmit={this.handleSubmit}>
-          <input type='text' name='body' value={this.state.body} onChange={this.onChange} />
-          <input className='button-primary' type='submit' />
+          <input type='text' name='body' value={this.state.body} onChange={this.onChange} style={{width: '80%'}}/>
+          <input className='button-primary' type='submit' value='+' style={{width: '20%'}}/>
         </form>
       </div>
     )

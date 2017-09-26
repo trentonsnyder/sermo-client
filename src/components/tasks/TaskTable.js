@@ -1,12 +1,33 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import ReactTable from "react-table"
 import "react-table/react-table.css"
 import moment from 'moment'
 import { looseMatch } from '../../utils/functions'
 import TaskDetailsContainer from './TaskDetailsContainer'
+import { updateTask } from '../../actions/tasks'
 
-const TaskTable = ({tasks}) => {
+const Button = ({backgroundColor, status}) => <button style={{backgroundColor, color: 'white'}}>{status}</button>
+const ActionButton = ({status, submitStatus, props}) => <button style={{backgroundColor: 'gray'}} onClick={() => submitStatus(props, status)}>{status}</button>
+
+const TaskTable = ({tasks, updateTask}) => {
+
+  const submitStatus = (props, status) => {
+    updateTask({client: {id: props.original.client.id}, id: props.original.id, status})
+  }
+
+  const statusButtons = (props) => {
+    let { status } = props.original
+    return(
+      <div>
+        {status === 'open' ? <Button backgroundColor={'blue'} status={'open'} /> : <ActionButton status={'open'} submitStatus={submitStatus} props={props} /> }
+        {status === 'pending' ? <Button backgroundColor={'yellow'}status={'pending'} /> : <ActionButton status={'pending'} submitStatus={submitStatus} props={props} /> }
+        {status === 'revision' ? <Button backgroundColor={'red'} status={'revision'} /> : <ActionButton status={'revision'} submitStatus={submitStatus} props={props} /> }
+        {status === 'completed' ? <Button backgroundColor={'green'} status={'completed'} /> : <ActionButton status={'completed'} submitStatus={submitStatus} props={props} /> }
+      </div>
+    )
+  }
 
   let columns = [
     {
@@ -25,7 +46,8 @@ const TaskTable = ({tasks}) => {
     },
     {
       Header: 'Status',
-      accessor: 'status'
+      accessor: 'status',
+      Cell: props => statusButtons(props)
     }
   ]
 
@@ -46,6 +68,4 @@ const TaskTable = ({tasks}) => {
 }
 
 
-export default TaskTable
-
-
+export default connect(null, {updateTask})(TaskTable)

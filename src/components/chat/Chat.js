@@ -6,12 +6,12 @@ import Messenger from './Messenger'
 
 const Chat = ({client}) => {
   return (
-    <div style={{display: 'flex'}}>
-      <div>
-        <Messenger />
-      </div>
-      <div>
-        <div>
+    <div style={{flexGrow: '1'}}>
+      <div style={{display: 'flex', justifyContent: 'center'}}>
+        <div style={{flexGrow: '1'}}>
+          <Messenger />
+        </div>
+        <div style={{flexGrow: '1'}}>
           <p><Link to={`/clients/${client.id}`}>{client.name}</Link></p>
           <p>{formatPhoneNumber(client.phone_number)}</p>
           <p>{client.last_seen}</p>

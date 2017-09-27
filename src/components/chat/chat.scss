@@ -1,3 +1,5 @@
+@import '../../variables.scss';
+
 .chat-room-sidebar {
   height: calc(100vh - 45px);
   overflow-y: auto;
@@ -24,14 +26,21 @@
 }
 
 .chat-bubble {
+  color: white;
   max-width: 500px;
   border-radius: 5px;
   padding: 5px;
-  background-color: #F0F8FF;
+  background-color: #696969;
 }
 
 .client-message {
-  background-color: #1EAEDB;
+  color: white;
+  background-color: $blue;
+}
+
+.chat-message-container {
+  margin-bottom: 12px; 
+  display: flex;
 }
 
 .chat-window {
@@ -45,4 +54,8 @@
   position: absolute;
   bottom: 0;
   width: 100%;
+}
+
+.selected {
+  background-color: #c6c6c6;
 }

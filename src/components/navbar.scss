@@ -1,11 +1,13 @@
+@import '../variables.scss';
+
 .navbar {
   display: flex;
   justify-content: space-around;
-  background-color: black; 
+  background-color: $blue; 
 }
 
 .navbar a {
-  color: white;
+  color: $off-white;
   cursor: pointer;
   text-decoration: none;
   padding: 10px;
@@ -17,6 +19,6 @@
 }
 
 .navbar a:hover {
-  background-color: #1EAEDB;
-  color: white;
+  background-color: $blue-gray;
+  color: $off-white;
 }

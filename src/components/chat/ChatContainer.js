@@ -5,15 +5,9 @@ import NavListItem from './NavListItem'
 import Chat from './Chat'
 import './chat.css'
 
-const ChatContainer = ({clients}) => {
+const ChatContainer = ({clients, location}) => {
 
-  const sideNav = () => {
-    return clients.map(c => {
-      return(
-        <NavListItem client={c} key={c.id} />
-      )
-    })
-  }
+  const sideNav = () => clients.map(c => <NavListItem client={c} key={c.id} selected={location.pathname === `/chat/${c.id}` ? true : false} />)
 
   return (
     <div style={{display: 'flex'}}>

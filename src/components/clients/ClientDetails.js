@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { goBack } from 'react-router-redux'
+import { Link } from 'react-router-dom'
 import TasksContainer from '../tasks/TasksContainer'
 import ClientEdit from './ClientEdit'
 
@@ -28,11 +29,15 @@ class ClientDetails extends React.Component {
   render() {
     return (
       <div style={{marginTop: '12px'}}>
-        <div className='flex-container'>
-          <button onClick={() => this.props.dispatch(goBack())}>Back</button>
-          <button onClick={this.toggleEdit}>{this.state.edit ? 'Cancel' : 'Edit'}</button>
+        <h2>{this.props.client.name}</h2>
+        <div style={{padding: '12px'}}>
+          <div className='flex-container' style={{padding: '6px 6px 0px 6px'}}>
+            <button className='button-primary' onClick={() => this.props.dispatch(goBack())}>Back</button>
+            <Link to={`/chat/${this.props.client.id}`}><button className='button-primary'>Chat</button></Link>
+            <button className='button-primary' onClick={this.toggleEdit}>{this.state.edit ? 'Cancel' : 'Edit'}</button>
+          </div>
+          { this.renderEdit() }
         </div>
-        { this.renderEdit() }
         <TasksContainer filterId={this.props.client.id} />
       </div>
     )

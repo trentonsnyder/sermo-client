@@ -24,6 +24,7 @@
 - Media Queries
 */
 
+@import 'variables.scss';
 
 /* Grid
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -54,7 +55,7 @@
 html is set to 62.5% so that all the REM measurements throughout Skeleton
 are based on 10px sizing. So basically 1.5rem = 15px :) */
 html {
-  background-color: white;
+  background-color: $off-white;
   font-size: 62.5%; }
 body {
   font-size: 1.5em; /* currently ems cause chrome bug misinterpreting rems on body element */
@@ -94,11 +95,11 @@ p {
 /* Links
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 a {
-  color: #1EAEDB;
+  color: $blue;
   text-decoration: none;
  }
 a:hover {
-  color: #0FA0CE; }
+  color: $blue-gray; }
 
 
 /* Buttons
@@ -122,7 +123,7 @@ input[type="button"] {
   white-space: nowrap;
   background-color: transparent;
   border-radius: 4px;
-  border: 1px solid #bbb;
+  border: 1px solid $blue-gray;
   cursor: pointer;
   box-sizing: border-box; }
 .button:hover,
@@ -144,8 +145,8 @@ input[type="submit"].button-primary,
 input[type="reset"].button-primary,
 input[type="button"].button-primary {
   color: #FFF;
-  background-color: #33C3F0;
-  border-color: #33C3F0; }
+  background-color: $blue;
+  border-color: $blue; }
 .button.button-primary:hover,
 button.button-primary:hover,
 input[type="submit"].button-primary:hover,
@@ -157,8 +158,8 @@ input[type="submit"].button-primary:focus,
 input[type="reset"].button-primary:focus,
 input[type="button"].button-primary:focus {
   color: #FFF;
-  background-color: #1EAEDB;
-  border-color: #1EAEDB; }
+  background-color: $orange;
+  border-color: $blue-gray; }
 
 
 /* Forms
@@ -204,7 +205,7 @@ input[type="url"]:focus,
 input[type="password"]:focus,
 textarea:focus,
 select:focus {
-  border: 1px solid #33C3F0;
+  border: 1px solid $blue-gray;
   outline: 0; }
 label,
 legend {
@@ -344,7 +345,7 @@ __________________________________________________  */
   animation: load7 1.8s infinite ease-in-out;
 }
 .loader {
-  color: #1EAEDB;
+  color: $blue-gray;
   font-size: 10px;
   margin: 80px auto;
   position: relative;

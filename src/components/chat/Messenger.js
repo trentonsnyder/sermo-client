@@ -30,8 +30,8 @@ class Messenger extends Component {
     return this.props.messages.map(m => {
       return (
         <div key={m.id}>
-          <div className={`${m.user_id}`} style={{marginBottom: '12px', display: 'flex'}}>
-            <div className={`chat-bubble ${m.user_id && 'client-message'}`}>
+          <div className='chat-message-container' style={m.user_id && {justifyContent: 'flex-end'}}>
+            <div className={`chat-bubble ${!m.user_id && 'client-message'}`}>
               {`${m.body}`}
             </div>
           </div>

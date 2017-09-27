@@ -39,21 +39,21 @@ class Authenticated extends React.Component {
         <div>
           <NavBar />
         </div>
-            <Switch>
-              <Route exact path='/' component={Dashboard}/>
-              <ClientsHOC>
-                <Route path='/chat' component={ChatContainer} />
-                <TasksHOC>
-                  <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
-                    <div style={{width: '100%', maxWidth: '1200px', padding: '12px'}}>
-                      <Route exact path='/clients' component={ClientsContainer} />
-                      <Route exact path='/clients/:id' component={ClientDetails}/>
-                      <Route exact path='/tasks' component={TasksContainer} />
-                    </div>
-                  </div>
-                </TasksHOC>
-              </ClientsHOC>
-            </Switch>
+        <Switch>
+          <Route exact path='/' component={Dashboard}/>
+          <ClientsHOC>
+            <Route path='/chat' component={ChatContainer} />
+            <TasksHOC>
+              <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+                <div style={{width: '100%', maxWidth: '1200px', padding: '12px'}}>
+                  <Route exact path='/clients' component={ClientsContainer} />
+                  <Route exact path='/clients/:id' component={ClientDetails}/>
+                  <Route exact path='/tasks' component={TasksContainer} />
+                </div>
+              </div>
+            </TasksHOC>
+          </ClientsHOC>
+        </Switch>
       </div>
     )
   }

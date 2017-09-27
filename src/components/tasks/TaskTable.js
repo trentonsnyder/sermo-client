@@ -9,7 +9,7 @@ import TaskDetailsContainer from './TaskDetailsContainer'
 import { updateTask } from '../../actions/tasks'
 
 const Button = ({backgroundColor, status}) => <button style={{backgroundColor, color: 'white'}}>{status}</button>
-const ActionButton = ({status, submitStatus, props}) => <button style={{backgroundColor: 'gray'}} onClick={() => submitStatus(props, status)}>{status}</button>
+const ActionButton = ({status, submitStatus, props}) => <button style={{backgroundColor: 'gray', border: 'none', padding: '0px 15px 0px 15px', margin: '0px 3px 0px 3px'}} onClick={() => submitStatus(props, status)}>{status}</button>
 
 const TaskTable = ({tasks, updateTask}) => {
 
@@ -21,10 +21,10 @@ const TaskTable = ({tasks, updateTask}) => {
     let { status } = props.original
     return(
       <div>
-        {status === 'open' ? <Button backgroundColor={'blue'} status={'open'} /> : <ActionButton status={'open'} submitStatus={submitStatus} props={props} /> }
-        {status === 'pending' ? <Button backgroundColor={'yellow'}status={'pending'} /> : <ActionButton status={'pending'} submitStatus={submitStatus} props={props} /> }
-        {status === 'revision' ? <Button backgroundColor={'red'} status={'revision'} /> : <ActionButton status={'revision'} submitStatus={submitStatus} props={props} /> }
-        {status === 'completed' ? <Button backgroundColor={'green'} status={'completed'} /> : <ActionButton status={'completed'} submitStatus={submitStatus} props={props} /> }
+        {status === 'open' ? <Button backgroundColor={'#2F7696'} status={'open'} /> : <ActionButton status={'open'} submitStatus={submitStatus} props={props} /> }
+        {status === 'pending' ? <Button backgroundColor={'#FD8D7a'}status={'pending'} /> : <ActionButton status={'pending'} submitStatus={submitStatus} props={props} /> }
+        {status === 'revision' ? <Button backgroundColor={'#C92F2F'} status={'revision'} /> : <ActionButton status={'revision'} submitStatus={submitStatus} props={props} /> }
+        {status === 'completed' ? <Button backgroundColor={'#1ECF01'} status={'completed'} /> : <ActionButton status={'completed'} submitStatus={submitStatus} props={props} /> }
       </div>
     )
   }

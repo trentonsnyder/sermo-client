@@ -35,6 +35,19 @@ export const uploadDocument = (document, client) => dispatch => {
   })
 }
 
+export const deleteDocuments = (documents, client) => dispatch => {
+  dispatch({type: 'DELETE_DOCUMENT_LOADING'})
+  axios.delete(`/api/v1/clients/${client.id}/documents`, {data: {documents}})
+  .then(res => {
+    dispatch({type: 'DELETE_DOCUMENT', data: res.data.documents})
+    dispatch({type: 'DELETE_DOCUMENT_NOT_LOADING'})
+  })
+  .catch(error => {
+    console.log(error)
+    dispatch({type: 'DELETE_DOCUMENT_NOT_LOADING'})
+  })
+}
+
 export const assignUrl = (document) => {
   axios.get(`/api/v1/clients/${document.client_id}/documents/${document.id}/assign_url`)
   .then(res => {

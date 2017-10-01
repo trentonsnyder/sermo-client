@@ -15,10 +15,12 @@ class TasksContainer extends Component {
   render() {
     let { state: {formOpen}, props: {creating, tasks} } = this
     return (
-      <div>
-        <div className='flex-container'>
-          <h3>Tasks</h3>
-          { creating ? <button>Creating...</button> : <button onClick={this.toggleForm}>{formOpen ? 'Cancel' : 'Add'}</button> }
+      <div style={{marginTop: '12px'}}>
+        <div className='section-header'>
+          <div className='flex-container'>
+            <h3>Tasks</h3>
+            { creating ? <button>Creating...</button> : <button  className='button-primary' onClick={this.toggleForm}>{formOpen ? 'Cancel' : 'Add'}</button> }
+          </div>
         </div>
         { formOpen && <TaskForm tasks={tasks} toggleForm={this.toggleForm} /> }
         <TaskTable tasks={tasks} />

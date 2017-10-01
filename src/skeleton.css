@@ -448,3 +448,8 @@ there.
   align-items: flex-end;
   justify-content: space-between;
   margin: auto; }
+
+.section-header {
+  background-color: #6EA6C9;
+  border-radius: 5px;
+  padding: 12px; }

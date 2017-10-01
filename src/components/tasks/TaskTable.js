@@ -8,7 +8,7 @@ import { looseMatch } from '../../utils/functions'
 import TaskDetailsContainer from './TaskDetailsContainer'
 import { updateTask } from '../../actions/tasks'
 
-const Button = ({backgroundColor, status}) => <button style={{backgroundColor, color: 'white'}}>{status}</button>
+const Button = ({backgroundColor, status}) => <button style={{backgroundColor, color: 'white', border: 'none', padding: '0px 15px 0px 15px', margin: '0px 3px 0px 3px'}}>{status}</button>
 const ActionButton = ({status, submitStatus, props}) => <button style={{backgroundColor: 'gray', border: 'none', padding: '0px 15px 0px 15px', margin: '0px 3px 0px 3px'}} onClick={() => submitStatus(props, status)}>{status}</button>
 
 const TaskTable = ({tasks, updateTask}) => {

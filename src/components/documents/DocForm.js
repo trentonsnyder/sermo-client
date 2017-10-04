@@ -11,9 +11,12 @@ const DocForm = ({client, uploadDocument, creating}) => {
   }
 
   return (
-    <Dropzone disabled={creating} onDropAccepted={onDrop} multiple={false} style={{textAlign: 'center', height: '200px', width: '200px', border: '1px solid black', borderRadius: '5px', cursor: 'pointer'}}>
-      { creating ? <div className='loader'>Loading...</div> : <div style={{lineHeight: '200px'}}><PlusSquare size={90} /></div> }
-    </Dropzone>
+    <div>
+      <small>Drag, drop or click to add.</small>
+      <Dropzone disabled={creating} onDropAccepted={onDrop} multiple={false} style={{textAlign: 'center', height: '200px', width: '200px', border: '1px solid black', borderRadius: '5px', cursor: 'pointer'}}>
+        { creating ? <div className='loader'>Loading...</div> : <div style={{lineHeight: '200px'}}><PlusSquare size={90} /></div> }
+      </Dropzone>
+    </div>
   )
 }
 

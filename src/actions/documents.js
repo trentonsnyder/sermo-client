@@ -3,12 +3,15 @@ import Cookies from 'universal-cookie'
 
 let cookies = new Cookies()
 
-axios.defaults.headers.common['Authorization'] = cookies.get('sermoToken')
-axios.defaults.headers.common['Accept'] = 'application/json'
-
 export const getDocuments = (client) => dispatch => {
+  const instance = axios.create({
+    headers: {
+      'Authorization': cookies.get('sermoToken'),
+      'Accept': 'application/json'
+    }
+  })
   dispatch({type: 'GET_DOCUMENTS_LOADING'})
-  axios.get(`/api/v1/clients/${client.id}/documents`)
+  instance.get(`/api/v1/clients/${client.id}/documents`)
   .then(res => {
     dispatch({type: 'GET_DOCUMENTS', data: res.data.documents})
     dispatch({type: 'GET_DOCUMENTS_NOT_LOADING'})
@@ -20,11 +23,17 @@ export const getDocuments = (client) => dispatch => {
 }
 
 export const uploadDocument = (document, client) => dispatch => {
-  const config = {headers: { 'content-type': 'multipart/form-data'}}
+  const instance = axios.create({
+    headers: {
+      'Authorization': cookies.get('sermoToken'),
+      'Accept': 'application/json',
+      'Content-Type': 'multipart/form-data'
+    }
+  })
   let data = new FormData();
   data.append('document', document, document.name)
   dispatch({type: 'CREATE_DOCUMENT_LOADING'})
-  axios.post(`/api/v1/clients/${client.id}/documents`, data, config)
+  instance.post(`/api/v1/clients/${client.id}/documents`, data)
   .then(res => {
     dispatch({type: 'CREATE_DOCUMENT', data: res.data.document})
     dispatch({type: 'CREATE_DOCUMENT_NOT_LOADING'})
@@ -36,8 +45,14 @@ export const uploadDocument = (document, client) => dispatch => {
 }
 
 export const deleteDocuments = (documents, client) => dispatch => {
+  const instance = axios.create({
+    headers: {
+      'Authorization': cookies.get('sermoToken'),
+      'Accept': 'application/json'
+    }
+  })
   dispatch({type: 'DELETE_DOCUMENT_LOADING'})
-  axios.delete(`/api/v1/clients/${client.id}/documents`, {data: {documents}})
+  instance.delete(`/api/v1/clients/${client.id}/documents`, {data: {documents}})
   .then(res => {
     dispatch({type: 'DELETE_DOCUMENT', data: res.data.documents})
     dispatch({type: 'DELETE_DOCUMENT_NOT_LOADING'})
@@ -49,7 +64,13 @@ export const deleteDocuments = (documents, client) => dispatch => {
 }
 
 export const assignUrl = (document) => {
-  axios.get(`/api/v1/clients/${document.client_id}/documents/${document.id}/assign_url`)
+  const instance = axios.create({
+    headers: {
+      'Authorization': cookies.get('sermoToken'),
+      'Accept': 'application/json'
+    }
+  })
+  instance.get(`/api/v1/clients/${document.client_id}/documents/${document.id}/assign_url`)
   .then(res => {
     let et = document.extension_type
     if (et === 'application/pdf' || et === 'image/jpdg' || et === 'image/png' || et === 'image/svg+xml' )

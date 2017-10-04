@@ -22,7 +22,9 @@ export const auth = payload => dispatch => {
 
 export const getUser = token => dispatch => {
   let instance = axios.create({
-    headers: {'Authorization': token}
+    headers: {
+      'Authorization': token
+    }
   })
   instance.get('/api/v1/user')
   .then(res => {

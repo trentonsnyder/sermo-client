@@ -38,6 +38,7 @@ class DocumentsContainer extends Component {
 
   deleteDocuments = () => {
     this.props.deleteDocuments(this.state.markedForDeletion, this.props.client)
+    this.toggleDelete()
   }
 
   render() {

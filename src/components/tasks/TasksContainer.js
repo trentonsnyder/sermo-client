@@ -4,14 +4,16 @@ import TaskTable from './TaskTable'
 import TaskForm from './TaskForm'
 
 class TasksContainer extends Component {
-  state = { formOpen: false }
+  state = { 
+    formOpen: false
+  }
 
   toggleForm = () => {
     this.setState((prevState) => ({
       formOpen: !prevState.formOpen
     }))
   }
-  
+
   render() {
     let { state: {formOpen}, props: {creating, tasks} } = this
     return (

@@ -13,7 +13,6 @@ let cookies = new Cookies()
 class App extends Component {
 
   componentDidMount() {
-    // thinking about adding the user id to the token name, in case a user has multiple accounts
     let token = cookies.get('sermoToken')
     if (token)
       this.props.dispatch(getUser(token))

@@ -14,11 +14,10 @@ import Cookies from 'universal-cookie'
 
 let cookies = new Cookies()
 
-// TODO: i don't want this token in the url...
-let cable = ActionCable.createConsumer(`ws://localhost:3001/cable?token=${cookies.get('sermoToken')}`)
-
 class Authenticated extends React.Component {
   componentDidMount() {
+    // TODO: i don't want this token in the url...
+    const cable = ActionCable.createConsumer(`ws://localhost:3001/cable?token=${cookies.get('sermoToken')}`)
     cable.subscriptions.create({
       channel: 'MessagesChannel'
     },

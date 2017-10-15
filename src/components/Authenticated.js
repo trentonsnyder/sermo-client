@@ -15,28 +15,39 @@ import Cookies from 'universal-cookie'
 let cookies = new Cookies()
 
 class Authenticated extends React.Component {
+  state = {
+    notification: false
+  }
+
   componentDidMount() {
     // TODO: i don't want this token in the url...
+    // TODO: maybe move this is its own component
     const cable = ActionCable.createConsumer(`ws://localhost:3001/cable?token=${cookies.get('sermoToken')}`)
     cable.subscriptions.create({
       channel: 'MessagesChannel'
     },
     {
       received: (data) => {
-        if (this.props.messages && data.client_id === this.props.messages[0].client_id) {
-          this.props.dispatch({type: 'CREATE_MESSAGE', data})
-        } else {
-          // some notification that will get logged to the sidebar
-        }
+        console.log(data)
+        // if user is in /chat/:id that matches data.conversation.client_id
+          // append to message reducer
+        // if user is in /chat or /chat/:id and doesn't match 
+          // the sidebar conversation needs a notification: true
+        // else
+          // this.setState({notification: true})
       }
     })
+  }
+
+  clearNotification = () => {
+    this.setState({notification: false})
   }
 
   render() {
     return (
       <div>
         <div>
-          <NavBar />
+          <NavBar notification={this.state.notification} clearNotification={this.clearNotification} />
         </div>
         <Switch>
           <Route exact path='/' component={Dashboard}/>

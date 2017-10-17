@@ -15,26 +15,32 @@ import Cookies from 'universal-cookie'
 let cookies = new Cookies()
 
 class Authenticated extends React.Component {
+
+  // work better in redux... i think.
   state = {
     notification: false
   }
 
   componentDidMount() {
+    // TODO: maybe move this createConsumer stuff is its own component <Subscriptions />
     // TODO: i don't want this token in the url...
-    // TODO: maybe move this is its own component
     const cable = ActionCable.createConsumer(`ws://localhost:3001/cable?token=${cookies.get('sermoToken')}`)
     cable.subscriptions.create({
       channel: 'MessagesChannel'
     },
     {
       received: (data) => {
-        console.log(data)
-        // if user is in /chat/:id that matches data.conversation.client_id
+        let reg = new RegExp('^/chat/')
+        let path = this.props.location.pathname
+        if (path === `/chat/${data.conversation.client_id}`) {
           // append to message reducer
-        // if user is in /chat or /chat/:id and doesn't match 
+          this.props.dispatch({type: 'CREATE_MESSAGE', data: data.message})
+        } else if (path.slice(0,5).match(reg)) {
           // the sidebar conversation needs a notification: true
-        // else
-          // this.setState({notification: true})
+          this.props.dispatch({type: 'APPEND_CONVERSATION_NOTIFICATION', data: data.conversation})
+        } else {
+          this.setState({notification: true})
+        }
       }
     })
   }

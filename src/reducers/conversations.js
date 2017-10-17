@@ -14,15 +14,17 @@ export default (state = defaultState, action) => {
     case 'GET_CONVERSATIONS_NOT_LOADING':
       return { ...state, loading: false }
     case 'CLOSE_CONVERSATION':
-      return { ...state, conversations: state.conversations.filter(c => !action.data.id) }
+      return { ...state, conversations: state.conversations.filter(c => c.id !== action.data.id) }
     case 'CLOSE_CONVERSATION_LOADING':
       return { ...state, deleting: true }
     case 'CLOSE_CONVERSATION_NOT_LOADING':
       return { ...state, deleting: false }
-    case 'APPEND_TO_CONVERSATION':
-      return state
+    // case 'APPEND_TO_CONVERSATION':
+    //   return state
       // if data.conversation exists append the message
       // else make a new convo and fetch conversation?
+    case 'APPEND_CONVERSATION_NOTIFICATION':
+      return { ...state, conversations: [...state.conversations.map(c => c.id === action.data.id ? {...c, notification: true} : c)] }
     default:
       return state
   }

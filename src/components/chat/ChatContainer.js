@@ -34,7 +34,7 @@ class ChatContainer extends React.Component {
   sideNav = () => {
     if (this.state.conversations) {
       return this.props.conversations.map(c => {
-        return <NavListItem client={c.client} closeOptions={true} key={c.id} selected={this.props.location.pathname === `/chat/${c.client.id}` ? true : false} />
+        return <NavListItem notify={c.notification} client={c.client} closeOptions={true} key={c.id} selected={this.props.location.pathname === `/chat/${c.client.id}` ? true : false} />
       })
     } else {
       return this.props.clients.map(c => {

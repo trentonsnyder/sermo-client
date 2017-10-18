@@ -9,22 +9,21 @@ import ClientsContainer from './clients/ClientsContainer'
 import ChatContainer from './chat/ChatContainer'
 import ClientDetails from './clients/ClientDetails'
 import TasksContainer from './tasks/TasksContainer'
-import ActionCable from 'actioncable'
+import ActionCable from 'action-cable-react-jwt'
 import Cookies from 'universal-cookie'
 
 let cookies = new Cookies()
 
 class Authenticated extends React.Component {
 
-  // work better in redux... i think.
+  // work better in redux... i think... maybe... we'll see.
   state = {
     notification: false
   }
 
   componentDidMount() {
     // TODO: maybe move this createConsumer stuff is its own component <Subscriptions />
-    // TODO: i don't want this token in the url...
-    const cable = ActionCable.createConsumer(`ws://localhost:3001/cable?token=${cookies.get('sermoToken')}`)
+    const cable = ActionCable.createConsumer('ws://localhost:3001/cable', cookies.get('sermoToken'))
     cable.subscriptions.create({
       channel: 'MessagesChannel'
     },
